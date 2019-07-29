@@ -23,7 +23,7 @@
  */
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.antfortune.freeline'
+//apply plugin: 'com.antfortune.freeline'
 
 android {
     compileSdkVersion System.properties['compileSdkVersion'] ? Integer.parseInt(System.properties['compileSdkVersion']) : 25
@@ -39,9 +39,9 @@ android {
         targetSdkVersion System.properties['targetSdkVersion'] ? Integer.parseInt(System.properties['targetSdkVersion']) : 25
         versionCode 1
         versionName "1.0"
-        jackOptions {
-            enabled true
-        }
+//        jackOptions {
+//            enabled true
+//        }
     }
     buildTypes {
         debug {
@@ -65,22 +65,28 @@ configurations.all {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.0.2'
-    compile project(path: ':virtualview')
-    compile 'com.android.support:recyclerview-v7:26.0.2@aar'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    provided('com.alibaba.android:virtual-common:1.0.9') {
-        changing = true
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.0.2'
+
+    implementation (project(':virtualview')){
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.alibaba.android', module: 'virtual-common'
+        transitive = true //传递性(打开会使用仓库的依赖，关闭则不使用)
     }
-    compile('com.alibaba.android:virtual-compiler:1.0.10@jar') {
+
+    implementation 'com.android.support:recyclerview-v7:26.0.2@aar'
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+//    provided('com.alibaba.android:virtual-common:1.0.9') {
+//        changing = true
+//    }
+    implementation('com.alibaba.android:virtual-compiler:1.0.10@jar') {
         exclude group: 'xmlpull', module: 'xmlpull'
         exclude group: 'net.sf.kxml', module: 'kxml2'
         changing = true
     }
-
-    compile 'com.google.code.gson:gson:2.8.2'
-    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'com.alibaba:fastjson:1.1.70.android'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
 }
