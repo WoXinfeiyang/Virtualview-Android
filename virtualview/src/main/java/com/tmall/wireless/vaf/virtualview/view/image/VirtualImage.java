@@ -58,7 +58,7 @@ public class VirtualImage extends ImageBase {
         mImp.reset();
         mBitmap = null;
     }
-
+    /**根据mBitmap确定Rect对象mContentRect的大小,如果mBitmap为空则下载mBitmap*/
     @Override
     protected void makeContentRect() {
         if (null != mBitmap) {
