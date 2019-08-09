@@ -68,6 +68,7 @@ public class Container extends ViewGroup implements IContainer, IView {
     }
 
     protected void attachViews(ViewBase view, View displayViewHolder) {
+        Log.d(TAG,"**attachViews**displayViewHolder="+displayViewHolder+",this="+this);
         view.setDisplayViewContainer(displayViewHolder);
         if (view instanceof Layout) {
             View v = view.getNativeView();
