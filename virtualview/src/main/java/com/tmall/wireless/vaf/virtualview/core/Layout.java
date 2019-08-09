@@ -29,6 +29,7 @@ import java.util.List;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 
 import com.libra.Utils;
@@ -188,6 +189,7 @@ public abstract class Layout extends ViewBase {
         // draw children
         for (int i = 0, size = mSubViews.size(); i < size; i++) {
             ViewBase v = mSubViews.get(i);
+            Log.d(TAG,"**comDraw**v ClassName="+v.getClass().getSimpleName()+",v.shouldDraw()="+v.shouldDraw());
             if (v.shouldDraw()) {
                 v.comDraw(canvas);
             }

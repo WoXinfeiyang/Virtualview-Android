@@ -213,6 +213,7 @@ public class VHLayout extends Layout {
         boolean hasMatchWidth = false;
         for (int i = 0, length = mSubViews.size(); i < length; i++) {
             ViewBase child = mSubViews.get(i);
+            Log.d(TAG,"**measureVertical**child ClassName="+child.getClass().getSimpleName()+",child.isGone()="+child.isGone());
             if(!child.isGone()) {
                 Params p = (Params) child.getComLayoutParams();
                 if ((View.MeasureSpec.EXACTLY != widthMode) && (LayoutCommon.MATCH_PARENT == p.mLayoutWidth)) {
@@ -253,6 +254,7 @@ public class VHLayout extends Layout {
         int consumedWidth = 0;
         for (int i = 0, length = mSubViews.size(); i < length; i++) {
             ViewBase child = mSubViews.get(i);
+            Log.d(TAG,"**measureHorizontal**child ClassName="+child.getClass().getSimpleName()+",child.isGone()="+child.isGone());
             if (!child.isGone()) {
                 Layout.Params p = child.getComLayoutParams();
                 if ((View.MeasureSpec.EXACTLY != heightMode) && (LayoutCommon.MATCH_PARENT == p.mLayoutHeight)) {

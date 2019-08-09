@@ -28,6 +28,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import com.tmall.wireless.vaf.framework.cm.ContainerService;
@@ -147,6 +148,7 @@ public class Container extends ViewGroup implements IContainer, IView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Log.d(TAG,"**onDraw**mView ClassName="+mView.getClass().getSimpleName()+",mView.shouldDraw()="+mView.shouldDraw());
         if (null != mView && mView.shouldDraw()) {
             mView.comDraw(canvas);
         }
@@ -207,11 +209,13 @@ public class Container extends ViewGroup implements IContainer, IView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Log.d(TAG,"**onMeasure**widthMeasureSpec="+widthMeasureSpec+",heightMeasureSpec="+heightMeasureSpec+",mView ClassName="+mView.getClass().getSimpleName());
         onComMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        Log.d(TAG,"**onLayout**changed="+changed+",left="+l+",top="+t+",right="+r+",b="+b+",mView ClassName="+mView.getClass().getSimpleName());
         onComLayout(changed, 0, 0, r - l, b - t);
     }
 
